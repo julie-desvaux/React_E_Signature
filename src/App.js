@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+// COMPONENT
+import Canvas from "./Components/Canvas";
+import Button from "./Components/Button";
+
+// CSS
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [base64Str, setBase64Str] = useState(null);
+
+	const handleClickValidation = (base64Str) => {
+		console.log("click :", base64Str);
+		setBase64Str(base64Str);
+	};
+
+	return (
+		<div className="App">
+			<h1>E-signature</h1>
+			<Canvas handleClickValidation={handleClickValidation} />
+			{base64Str && <img src={base64Str} alt="e-signature" />}
+		</div>
+	);
 }
 
 export default App;
