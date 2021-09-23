@@ -2,7 +2,6 @@ import { useState } from "react";
 
 // COMPONENT
 import Canvas from "./Components/Canvas";
-import Button from "./Components/Button";
 
 // CSS
 import "./App.css";

@@ -9,10 +9,11 @@ export default function Canvas({ handleClickValidation }) {
 	const [y, setY] = useState();
 	const cnvEl = useRef(null);
 	let canvasEl;
+	let context;
 
 	useEffect(() => {
 		canvasEl = cnvEl.current;
-		const context = canvasEl.getContext("2d");
+		context = canvasEl.getContext("2d");
 		resizeCanvas(canvasEl);
 		const mouseDown = () => {
 			setIsClicked(true);
@@ -47,6 +48,10 @@ export default function Canvas({ handleClickValidation }) {
 		};
 	}, [isClicked, x, y]);
 
+	const onClickDelete = () => {
+		context.clearRect(0, 0, canvasEl.width, canvasEl.height);
+	};
+
 	const onClickValidate = () => {
 		handleClickValidation(canvasEl.toDataURL());
 	};
@@ -67,8 +72,9 @@ export default function Canvas({ handleClickValidation }) {
 	return (
 		<div>
 			<canvas ref={cnvEl} width="400" height="200"></canvas>
-			<div>
+			<div className="container-btn">
 				<Button onClick={() => onClickValidate()}>Valider</Button>
+				<Button onClick={() => onClickDelete()}>Supprimer</Button>
 			</div>
 		</div>
 	);
