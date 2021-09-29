@@ -14,7 +14,6 @@ export default function Canvas({ handleClickValidation }) {
 	useEffect(() => {
 		canvasEl = cnvEl.current;
 		context = canvasEl.getContext("2d");
-		resizeCanvas(canvasEl);
 		const mouseDown = () => {
 			setIsClicked(true);
 			context.beginPath();
@@ -56,18 +55,18 @@ export default function Canvas({ handleClickValidation }) {
 		handleClickValidation(canvasEl.toDataURL());
 	};
 
-	const resizeCanvas = (canvas) => {
-		const { width, height } = canvas.getBoundingClientRect();
-		if (canvas.width !== width || canvas.height !== height) {
-			const { devicePixelRatio: ratio = 1 } = window;
-			const context = canvas.getContext("2d");
-			canvas.width = width * ratio;
-			canvas.height = height * ratio;
-			context.scale(ratio, ratio);
-			return canvas;
-		}
-		return false;
-	};
+	// const resizeCanvas = (canvas) => {
+	// 	const { width, height } = canvas.getBoundingClientRect();
+	// 	if (canvas.width !== width || canvas.height !== height) {
+	// 		const { devicePixelRatio: ratio = 1 } = window;
+	// 		const context = canvas.getContext("2d");
+	// 		canvas.width = width * ratio;
+	// 		canvas.height = height * ratio;
+	// 		context.scale(ratio, ratio);
+	// 		return canvas;
+	// 	}
+	// 	return false;
+	// };
 
 	return (
 		<div>
